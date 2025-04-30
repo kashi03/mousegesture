@@ -27,7 +27,21 @@ chrome.runtime.onMessage.addListener((message, sender) => {
           chrome.tabs.update(tabs[prevIndex].id, { active: true });
         });
         break;
-    }
+      case "D":
+        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+          if (tabs && tabs.length > 0) {
+            chrome.tabs.update(tabs[0].id, { pinned: true });
+          } 
+        });
+        break;
+      case "DRU":
+        chrome.sessions.getRecentlyClosed({ maxResults: 10 }, function(sessions) {
+          if (sessions && sessions.length > 0) {
+            chrome.sessions.restore(sessions[0].tab.sessionId)
+          }
+        });
+break;
+}
   } else if (message.mouseButton == 'R') {
     switch (message.gesture) {
       case "R":
