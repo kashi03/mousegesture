@@ -58,6 +58,7 @@
 
   const gestureEnd = () => {
     ctx.clearRect(0, 0, gestureCanvas.width, gestureCanvas.height)
+    gesturePath = [];
   }
 
   document.addEventListener("contextmenu", (event) => {
