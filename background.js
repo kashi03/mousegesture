@@ -28,20 +28,20 @@ chrome.runtime.onMessage.addListener((message, sender) => {
         });
         break;
       case "D":
-        chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
           if (tabs && tabs.length > 0) {
             chrome.tabs.update(tabs[0].id, { pinned: true });
-          } 
+          }
         });
         break;
       case "DRU":
-        chrome.sessions.getRecentlyClosed({ maxResults: 10 }, function(sessions) {
+        chrome.sessions.getRecentlyClosed({ maxResults: 10 }, function (sessions) {
           if (sessions && sessions.length > 0) {
             chrome.sessions.restore(sessions[0].tab.sessionId)
           }
         });
-break;
-}
+        break;
+    }
   } else if (message.mouseButton == 'R') {
     switch (message.gesture) {
       case "R":
